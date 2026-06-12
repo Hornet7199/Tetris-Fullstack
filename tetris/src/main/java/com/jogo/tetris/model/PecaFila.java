@@ -1,5 +1,13 @@
 package com.jogo.tetris.model;
 
+import java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.jogo.tetris.util.FisherYates;
+
+import java.util.List;
+
 public class PecaFila {
     Peca inicio;
     Peca fim;
@@ -8,7 +16,7 @@ public class PecaFila {
         return inicio == null && fim == null;
     }
 
-    public void enqueve(Peca entrarNaFila) {
+    public void enqueue(Peca entrarNaFila) {
         if (isEmpty()) {
             inicio = entrarNaFila;
             fim = entrarNaFila;
@@ -19,16 +27,46 @@ public class PecaFila {
         }
     }
 
-    public void dequave() {
-        if (!isEmpty()) {
-            if (inicio == fim) {
-                inicio = null;
-                fim = null;
-            } else {
-                inicio = inicio.proximo;
-            }
+    public Peca dequeue() {
+
+        if (isEmpty()) {
+            return null;
         }
 
+        Peca removida = inicio;
+
+        if (inicio == fim) {
+            inicio = null;
+            fim = null;
+        } else {
+            inicio = inicio.proximo;
+        }
+
+        removida.proximo = null;
+
+        return removida;
+    }
+
+    /**
+     * Gera uma bag com as 7 peças e embaralha usando Fisher-Yates
+     */
+    public void preencherBag() {
+
+        List<Peca> bag = new ArrayList<>();
+
+        bag.add(FabricaPecas.criarI());
+        bag.add(FabricaPecas.criarO());
+        bag.add(FabricaPecas.criarT());
+        bag.add(FabricaPecas.criarS());
+        bag.add(FabricaPecas.criarZ());
+        bag.add(FabricaPecas.criarJ());
+        bag.add(FabricaPecas.criarL());
+
+        FisherYates.embaralhar(bag);
+
+        for (Peca p : bag) {
+            enqueue(p);
+        }
     }
 
     @Override
