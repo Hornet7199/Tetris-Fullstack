@@ -8,9 +8,10 @@ import { WebsocketService } from './websocket';
   templateUrl: './app.html',
   styleUrl: './app.scss' 
 })
-export class App { // <-- A mudança foi feita nesta linha!
+export class App {
   
-  constructor(private wsService: WebsocketService) {}
+  // O serviço agora é 'public' para o HTML conseguir enxergar a matriz
+  constructor(public wsService: WebsocketService) {}
 
   testarBotao() {
     console.log('Botão clicado! Enviando sinal para o Spring...');

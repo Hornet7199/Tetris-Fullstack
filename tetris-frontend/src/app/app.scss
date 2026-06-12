@@ -1,0 +1,26 @@
+.tabuleiro {
+  display: grid;
+  /* Cria 10 colunas com exatos 30 pixels de largura cada */
+  grid-template-columns: repeat(10, 30px);
+  /* Cria 20 linhas com exatos 30 pixels de altura cada */
+  grid-template-rows: repeat(20, 30px);
+  
+  gap: 2px; /* O espacinho entre os blocos para dar o efeito de grade */
+  background-color: #222; /* Cor de fundo geral do tabuleiro */
+  padding: 4px;
+  width: max-content;
+  margin: 0 auto; /* Centraliza o tabuleiro na tela */
+  border: 4px solid #444; /* Borda grossa externa simulando a máquina */
+  border-radius: 4px;
+}
+
+.celula {
+  background-color: #111; /* Cor da célula apagada (quando o Java manda 0) */
+  border-radius: 2px;
+  
+  /* Quando tiver uma peça (diferente de 0), aplicamos a cor brilhante */
+  &.preenchida {
+    background-color: #00d8ff; 
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+}

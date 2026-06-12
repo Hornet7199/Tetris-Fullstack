@@ -1,8 +1,20 @@
 <div style="text-align: center; margin-top: 100px; font-family: sans-serif;">
-  <h1>🕹️ Tetris - Teste de Conexão 🕹️</h1>
-  <p>Clique no botão abaixo para pedir o tabuleiro inicial ao backend Java.</p>
+  <h1> Tetris </h1>
   
-  <button (click)="testarBotao()" style="padding: 15px 30px; font-size: 18px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px;">
-    Iniciar Jogo (Pedir Tabuleiro)
+  <button (click)="testarBotao()" style="margin-bottom: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px;">
+  Iniciar Jogo (Gerar Tabuleiro)
   </button>
+
+  <div class="tabuleiro">
+    
+    @for (linha of wsService.grade; track $index) {
+      
+      @for (celula of linha; track $index) {
+        
+        <div class="celula" [class.preenchida]="celula !== 0"></div>
+        
+      }
+    }
+    
+  </div>
 </div>

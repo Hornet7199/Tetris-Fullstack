@@ -1,5 +1,10 @@
 package com.jogo.tetris.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Tabuleiro {
     private final Integer linhas = 20;
     private final Integer colunas = 10;
@@ -17,18 +22,6 @@ public class Tabuleiro {
             }
             System.out.println();
         }
-    }
-
-    public Integer[][] getGrade() {
-        return grade;
-    }
-
-    public Integer getLinhas() {
-        return linhas;
-    }
-
-    public Integer getColunas() {
-        return colunas;
     }
 
 }

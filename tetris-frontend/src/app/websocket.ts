@@ -6,35 +6,38 @@ import SockJS from 'sockjs-client';
   providedIn: 'root'
 })
 export class WebsocketService {
-  private stompClient: Client;
+  public stompClient: Client;
+  public grade: number[][] = []; // A gaveta que guarda a matriz para o HTML ver
 
   constructor() {
-    // Aponta direto para a porta 8080, onde o Spring está rodando
     this.stompClient = new Client({
+      // Conecta no Java usando o SockJS
       webSocketFactory: () => new SockJS('http://localhost:8080/tetris-websocket'),
-      debug: (msg) => console.log(msg) // Vai imprimir no F12 tudo o que acontecer
+      debug: (str) => { console.log(str); }
     });
 
-    // O que o Angular deve fazer assim que a conexão der certo
+    // O que fazer assim que o rádio ligar e achar o Java
     this.stompClient.onConnect = (frame) => {
       console.log('Conectado ao Spring com sucesso!', frame);
       
-      // Inscreve o Angular no canal do tabuleiro para ouvir as respostas do Java
-      this.stompClient.subscribe('/topico/tabuleiro', (mensagem) => {
-        const tabuleiroRecebido = JSON.parse(mensagem.body);
-        console.log('Matriz recebida do Java:', tabuleiroRecebido);
+      // Sintoniza na rádio do tabuleiro e fica ouvindo
+      this.stompClient.subscribe('/topico/tabuleiro', (message) => {
+        const dados = JSON.parse(message.body);
+        this.grade = dados.grade; // Salva a matriz que chegou do Java!
+        console.log('Matriz salva com sucesso no Angular!');
       });
     };
 
-    // Liga o rádio e tenta conectar
+    // Liga o rádio na tomada
     this.stompClient.activate();
   }
 
-  // Função para enviar o comando de iniciar pro Java
+  // O botão da tela vai chamar essa função
   iniciarJogo() {
-    this.stompClient.publish({
-      destination: '/app/iniciar',
-      body: '' 
-    });
+    if (this.stompClient.connected) {
+      this.stompClient.publish({ destination: '/app/iniciar' });
+    } else {
+      console.error('Opa! O rádio ainda não conectou no Java.');
+    }
   }
 }
