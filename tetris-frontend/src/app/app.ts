@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { WebsocketService } from './websocket';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss' 
 })
