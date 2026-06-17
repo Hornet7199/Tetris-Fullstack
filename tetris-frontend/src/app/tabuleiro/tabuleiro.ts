@@ -3,14 +3,14 @@ import { Component, HostListener, OnInit, ChangeDetectorRef } from '@angular/cor
 import { WebsocketService } from '../websocket'; 
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-tabuleiro', // 1. Seletor atualizado!
   standalone: true,
   imports: [CommonModule], 
   
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  templateUrl: './tabuleiro.html', // 2. Apontando para o HTML certo
+  styleUrl: './tabuleiro.scss'     // 3. Apontando para o SCSS certo
 })
-export class App implements OnInit { 
+export class Tabuleiro implements OnInit { // 4. Classe renomeada!
   
   public grade: number[][] = []; 
 
@@ -22,8 +22,9 @@ export class App implements OnInit {
   ngOnInit() {
     this.wsService.grade$.subscribe(novaGrade => {
       if (novaGrade && novaGrade.length > 0) {
-        this.grade = novaGrade;
-        this.cdr.detectChanges(); // Força a tela atualizar
+        // Usando o spread operator para forçar a atualização visual da matriz
+        this.grade = novaGrade.map(linha => [...linha]);
+        this.cdr.detectChanges(); 
       }
     });
   }
