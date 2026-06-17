@@ -1,26 +1,31 @@
+/* O container do tabuleiro */
 .tabuleiro {
-  display: grid;
-  /* Cria 10 colunas com exatos 30 pixels de largura cada */
-  grid-template-columns: repeat(10, 30px);
-  /* Cria 20 linhas com exatos 30 pixels de altura cada */
-  grid-template-rows: repeat(20, 30px);
-  
-  gap: 2px; /* O espacinho entre os blocos para dar o efeito de grade */
-  background-color: #222; /* Cor de fundo geral do tabuleiro */
-  padding: 4px;
-  width: max-content;
-  margin: 0 auto; /* Centraliza o tabuleiro na tela */
-  border: 4px solid #444; /* Borda grossa externa simulando a máquina */
-  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  background-color: #222; /* Fundo geral escuro */
+  border: 2px solid #555;
+  width: fit-content;
 }
 
-.celula {
-  background-color: #111; /* Cor da célula apagada (quando o Java manda 0) */
-  border-radius: 2px;
-  
-  /* Quando tiver uma peça (diferente de 0), aplicamos a cor brilhante */
-  &.preenchida {
-    background-color: #00d8ff; 
-    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
-  }
+/* Cada linha da matriz */
+.linha {
+  display: flex;
 }
+
+/* Cada quadradinho */
+.celula {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #333; /* Uma borda sutil para ver o grid */
+  box-sizing: border-box;
+}
+
+/* === AS CORES DAS PEÇAS === */
+.cor-0 { background-color: #1a1a1a; } /* Fundo (vazio) */
+.cor-1 { background-color: cyan; }    /* Peça I (reta) */
+.cor-2 { background-color: blue; }    /* Peça J */
+.cor-3 { background-color: orange; }  /* Peça L */
+.cor-4 { background-color: yellow; }  /* Peça O (quadrado) */
+.cor-5 { background-color: green; }   /* Peça S */
+.cor-6 { background-color: purple; }  /* Peça T */
+.cor-7 { background-color: red; }     /* Peça Z */

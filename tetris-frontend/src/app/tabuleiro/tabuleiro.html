@@ -1,22 +1,14 @@
-<div style="text-align: center; margin-top: 100px; font-family: sans-serif;">
-  <h1> Tetris </h1>
-  
-  <button (click)="testarBotao()" style="margin-bottom: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px;">
-  Iniciar Jogo (Gerar Tabuleiro)
-  </button>
+<main class="container">
+  <button (click)="testarBotao()">Iniciar Jogo</button>
 
-  <div class="tabuleiro">
+ <div class="tabuleiro">
+  <div *ngFor="let linha of grade" class="linha">
     
-    @for (linha of wsService.grade; track $index) {
-      
-      @for (celula of linha; track $index) {
-        
-        <div class="celula" [class.preenchida]="celula !== 0"></div>
-        
-      }
-    }
+    <div *ngFor="let celula of linha" 
+         class="celula" 
+         [ngClass]="'cor-' + celula">
+    </div>
     
   </div>
-
-  
 </div>
+</main>
