@@ -1,0 +1,92 @@
+<div class="comoJoga">
+<h1>Como jogar</h1>
+<h2>controles | descrição</h2>
+<p> → (Direita): move a peça para a direção indicada</p> <br> 
+ 
+<p>← (Esquerda): move a peça para a direção indicada</p> <br>
+<p>↓ (Baixo): Move a peça para baixo mais rápido</p> <br> <br>
+
+<p>O Tetris é um jogo de quebra-cabeça onde peças geométricas (tetraminós) caem</p> 
+<p>continuamente do topo da tela. O objetivo é girar e encaixar essas peças para</p>
+<p>formar linhas horizontais completas. Quando uma linha é formada, ela desaparece,</p>
+<p>impedindo que os blocos acumulem até o topo da tela</p> <br>
+
+<button>Voltar</button>
+</div>
+
+<style>
+body{
+
+    background-color: #000000;
+}
+    
+.comoJoga {
+  border: 4px solid #ffffff; 
+  padding: 30px;
+  text-align: center;
+  max-width: 600px;       
+  width: 90%;
+  margin: 20px auto;
+}
+  h1 {
+    color: #ffffff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  
+  h2 {
+    color: #ffff00; 
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 2px dotted #ffffff;
+    padding-bottom: 10px;
+  }
+
+ 
+  p {
+    color: #ffffff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;  
+    line-height: 1.8;      
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+    text-align: left;       
+  }
+
+ 
+  br {
+    display: block;
+    content: "";
+    margin-top: 10px;
+  }
+
+
+  button {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 25px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+
+    &:hover {
+      color: #ffff00; 
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:focus, &:active {
+      outline: none;
+    }
+  }
+
+</style>

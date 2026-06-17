@@ -1,20 +1,2 @@
-<div style="text-align: center; margin-top: 100px; font-family: sans-serif;">
-  <h1> Tetris </h1>
-  
-  <button (click)="testarBotao()" style="margin-bottom: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px;">
-  Iniciar Jogo (Gerar Tabuleiro)
-  </button>
 
-  <div class="tabuleiro">
-    
-    @for (linha of wsService.grade; track $index) {
-      
-      @for (celula of linha; track $index) {
-        
-        <div class="celula" [class.preenchida]="celula !== 0"></div>
-        
-      }
-    }
-    
-  </div>
-</div>
+<router-outlet></router-outlet>
