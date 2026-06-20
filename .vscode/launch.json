@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TetrisApplication<tetris>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.jogo.tetris.TetrisApplication",
+            "projectName": "tetris",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

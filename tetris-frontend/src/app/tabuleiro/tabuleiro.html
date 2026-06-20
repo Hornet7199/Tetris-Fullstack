@@ -1,14 +1,58 @@
-<main class="container">
-  <button (click)="testarBotao()">Iniciar Jogo</button>
-
- <div class="tabuleiro">
-  <div *ngFor="let linha of grade" class="linha">
-    
-    <div *ngFor="let celula of linha" 
-         class="celula" 
-         [ngClass]="'cor-' + celula">
+<div class="container-jogo">
+  <div class="painel-lateral instrucoes" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+    <div>
+      <h3>CONTROLES</h3>
+      <p>◀ ▶ Mover</p>
+      <p>▲ Girar</p>
+      <p>▼ Acelerar</p>
     </div>
     
+    <div style="margin-top: 20px; border-top: 1px dashed #555; padding-top: 15px;">
+      <button (click)="voltarAoMenu()" class="btn-acao menu" style="width: 100%; padding: 8px; font-size: 12px;">SAIR DO JOGO</button>
+    </div>
+  </div>
+
+  <div class="area-tabuleiro">
+    <div *ngIf="!jogoIniciado" class="tela-menu">
+      <h1>TETRIS</h1>
+      <button (click)="comecar()" class="btn-menu-iniciar">JOGAR</button>
+    </div>
+    
+    <div class="grid-tabuleiro" *ngIf="jogoIniciado && dadosJogo">
+      <ng-container *ngFor="let linha of dadosJogo?.tabuleiro?.grade">
+        <div *ngFor="let celula of linha" [className]="'celula cor-' + (celula || 0)"></div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="painel-lateral status">
+    
+    <div class="caixa-placar" *ngIf="jogoIniciado && dadosJogo">
+      <div class="item-placar">
+        <h3>PONTOS</h3>
+        <p class="numero-placar">{{ dadosJogo?.pontuacao || 0 }}</p>
+      </div>
+      <div class="item-placar" style="margin-top: 15px;">
+        <h3>LINHAS</h3>
+        <p class="numero-placar">{{ dadosJogo?.linesEliminadas || 0 }}</p>
+      </div>
+    </div>
+
+    <div class="caixa-proxima" *ngIf="jogoIniciado && dadosJogo?.jogoAtivo" style="margin-top: 20px;">
+      <h3>PRÓXIMA</h3>
+      <div class="mini-grid" *ngIf="dadosJogo?.proximasPecas?.length > 0">
+        <div *ngFor="let linha of dadosJogo.proximasPecas[0]" style="display: flex; flex-direction: row; justify-content: center;">
+          <div *ngFor="let celula of linha" [className]="'celula mini cor-' + celula"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-over-tag" *ngIf="dadosJogo && !dadosJogo?.jogoAtivo">
+      <h2>FIM DE JOGO</h2>
+      
+      <div class="botoes-acoes">
+        <button (click)="reiniciar()" class="btn-acao reiniciar">REINICIAR</button>
+      </div>
+    </div>
   </div>
 </div>
-</main>

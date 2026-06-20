@@ -90,4 +90,15 @@ public class PecaFila {
 
     }
 
+    public List<int[][]> getFormatosFila() {
+        List<int[][]> formatos = new ArrayList<>();
+        Peca atual = this.inicio; // Começa a percorrer a partir do início da sua fila
+        
+        while (atual != null) {
+            formatos.add(atual.getMatriz()); // Pega a matriz numérica da peça
+            atual = atual.proximo;           // Anda para o próximo nó da estrutura encadeada
+        }
+        return formatos;
+    }
+
 }

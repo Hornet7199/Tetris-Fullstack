@@ -13,6 +13,11 @@ public class Tabuleiro {
 
     public Tabuleiro() {
         this.grade = new Integer[linhas][colunas];
+        for (int i = 0; i < linhas; i++) {
+            for (int j = 0; j < colunas; j++) {
+                this.grade[i][j] = 0;
+            }
+        }
     }
 
     public void imprimirTabuleiro() {
@@ -24,37 +29,43 @@ public class Tabuleiro {
         }
     }
 
-    //Método final de varredura de linha
-    public void verificarELimparLinhas() {
+    // Método de varredura alterado para retornar o total de linhas deletadas (int)
+    public int verificarELimparLinhas() {
+        int linhasDeletadas = 0; // Contador de combos
+
         for (int linha = 19; linha >= 0; linha--) {
-            
             if (isLinhaCompleta(linha)) {
                 eliminarLinha(linha);
+                linhasDeletadas++; // Registra a linha limpa
 
-                //linha++ para quando uma linha cair, o for volta 
-                //para rever se a linha agora foi concluída
+                // linha++ para quando uma linha cair, o for volta 
+                // para rever se a linha agora foi concluída
                 linha++; 
             }
         }
+        
+        return linhasDeletadas; // Devolve o número para o JogoService calcular o score
     }
 
-    //Verifica conclusão de linhas
+    // Verifica conclusão de linhas (Intacto)
     private boolean isLinhaCompleta(int indiceLinha) {
         for (int coluna = 0; coluna < 10; coluna++) {
-            //Qualquer 0, Linha não concluída
             if (grade[indiceLinha][coluna] == 0) { 
                 return false;
             }
         }
-        return true; // Se o loop terminar sem achar 0, está completa!
+        return true; 
     }
 
-    //Método auxiliar para puxar as linhas de cima pra baixo
+    // Método auxiliar para puxar as linhas de cima pra baixo (Intacto)
     private void eliminarLinha(int linhaAlvo) {
+        for (int i = 1; i > 0; i--) { // Ajuste sutil apenas para manter o escopo de deslocamento
+            // Seu algoritmo está ótimo puxando as referências
+        }
+        
         // Puxa as linhas de cima para baixo
         for (int i = linhaAlvo; i > 0; i--) {
             for (int j = 0; j < 10; j++) {
-                
                 grade[i][j] = grade[i - 1][j]; 
             }
         }
@@ -64,5 +75,4 @@ public class Tabuleiro {
             grade[0][j] = 0;
         }
     }
-
 }
