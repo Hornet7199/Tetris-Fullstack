@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { WebsocketService } from './websocket';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -7,15 +6,8 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss' 
+  styleUrls: [ './app.scss' ]
 })
 export class App {
   
-  // O serviço agora é 'public' para o HTML conseguir enxergar a matriz
-  constructor(public wsService: WebsocketService) {}
-
-  testarBotao() {
-    console.log('Botão clicado! Enviando sinal para o Spring...');
-    this.wsService.iniciarJogo();
-  }
 }

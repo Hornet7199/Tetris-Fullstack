@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
    standalone: true,
   imports: [CommonModule],
   templateUrl: './menu.html',
-  styleUrl: './menu.scss',
+  styleUrls:[ './menu.scss' ]
 })
 export class Menu {
     constructor(private router: Router) {}

@@ -3,14 +3,14 @@ import { Component, HostListener, OnInit, ChangeDetectorRef } from '@angular/cor
 import { WebsocketService } from '../websocket'; 
 
 @Component({
-  selector: 'app-tabuleiro', // 1. Seletor atualizado!
+  selector: 'app-tabuleiro', 
   standalone: true,
   imports: [CommonModule], 
   
-  templateUrl: './tabuleiro.html', // 2. Apontando para o HTML certo
-  styleUrl: './tabuleiro.scss'     // 3. Apontando para o SCSS certo
+  templateUrl: './tabuleiro.html', 
+  styleUrl: './tabuleiro.scss'     
 })
-export class Tabuleiro implements OnInit { // 4. Classe renomeada!
+export class Tabuleiro implements OnInit { 
   
   public grade: number[][] = []; 
 
